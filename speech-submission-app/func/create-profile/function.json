@@ -1,0 +1,42 @@
+{
+  "bindings": [
+    {
+      "name": "req",
+      "type": "httpTrigger",
+      "direction": "in",
+      "methods": [ "post" ],
+      "route": "profile/{year:int}/{id:guid}"
+    },
+    {
+      "name": "speakerProfile",
+      "type": "table",
+      "direction": "in",
+      "tableName": "profiles",
+      "partitionKey": "{year}",
+      "rowKey": "{id}",
+      "connection": "ProfileStorage"
+    },
+    {
+      "name": "speakerProfileTable",
+      "type": "table",
+      "direction": "out",
+      "tableName": "profiles",
+      "partitionKey": "{year}",
+      "rowKey": "{id}",
+      "connection": "ProfileStorage"
+    },
+    {
+      "name": "speakerProfileBlob",
+      "type": "blob",
+      "path": "profiles/{year}/{id}",
+      "connection": "ProfileStorage",
+      "direction": "out"
+    },
+    {
+      "name": "res",
+      "type": "http",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}
