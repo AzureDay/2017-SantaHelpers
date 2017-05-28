@@ -5,7 +5,8 @@
       "type": "httpTrigger",
       "direction": "in",
       "methods": [ "get" ],
-      "route": "profile/{year:int}/{id:guid}"
+      "route": "profile/{year:int}/{id:guid}",
+      "authLevel": "anonymous"
     },
     {
       "name": "speakerProfile",
