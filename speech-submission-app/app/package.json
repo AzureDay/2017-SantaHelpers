@@ -1,0 +1,12 @@
+{
+  "name": "speech-submission-app",
+  "version": "1.0.0",
+  "scripts": {},
+  "author": "Boyko Anton <boyko.ant@live.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
+    "knockout": "^3.4.2"
+  }
+}
