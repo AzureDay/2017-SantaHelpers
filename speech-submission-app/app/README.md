@@ -1,12 +1,23 @@
-# Restore packages
+### Install global dependencies
+
+```bash
+npm install --global gulp
+```
+
+### Install local dependencies
 
 ```bash
 npm install
 ```
 
-# Run locally
+### Run live reload
 
 ```bash
-http-server -c-1
+gulp serve
 ```
-`-c-1` key will disable http caching.
+
+### Create single file distribution build
+
+```bash
+gulp build
+```

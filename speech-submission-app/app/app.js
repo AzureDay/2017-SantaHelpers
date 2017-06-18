@@ -62,6 +62,7 @@ function SpeakerApp(rootNode) {
 		notes: ko.observable('')
 	};
 
+
     // ======= Bindings =======
 
     function getFromForm() {

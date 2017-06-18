@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+    <div class="panel-heading">Social profiles</div>
+    <div class="panel-body">
+        <div data-bind="foreach: speaker.socialProfiles">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Social profile url</label>
+                <div class="col-sm-9">
+                    <input data-bind="textInput: $data.url" placeholder="Social profile url" type="text" class="form-control">
+                </div>
+                <button class="col-sm-1 btn btn-danger" data-bind="click: $parent.removeSocialProfile">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <button data-bind="click: addSocialProfile" class="btn btn-primary">Add social profile</button>
+    </div>
+</div>
