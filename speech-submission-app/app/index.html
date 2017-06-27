@@ -2,15 +2,35 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+
+	<!-- inject:content:local -->
+	<link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+	<!-- endinject -->
+
+	<!-- inject:content:cdn -->
+	<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+			integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+			crossorigin="anonymous">
+	<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+		  	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+			crossorigin="anonymous">
+	<!-- endinject -->
 </head>
 <body>
 
 	<div id="app">
 
 		<div class="container">
-			<div class="form-horizontal">
+			<div data-bind="visible: message.isVisible">
+				Stay tuned!
+			</div>
+
+			<div data-bind="visible: !message.isVisible()" style="display: none;" class="form-horizontal">
 				<h1>Azure Day 2017 Ukraine</h1>
 
 				<!-- inject:content:html:view/speaker-profile.html -->
@@ -23,6 +43,9 @@
 				<!-- endinject -->
 
 				<!-- inject:content:html:view/workshop-topics.html -->
+				<!-- endinject -->
+
+				<!-- inject:content:html:view/conference-topics.html -->
 				<!-- endinject -->
 
 				<!-- inject:content:html:view/other.html -->
@@ -38,8 +61,21 @@
 
 	</div>
 
-	<script src="node_modules/jquery/dist/jquery.min.js"></script>
-	<script src="node_modules/knockout/build/output/knockout-latest.js"></script>
+	<!-- inject:content:local -->
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../node_modules/knockout/build/output/knockout-latest.js"></script>
+	<!-- endinject -->
+
+	<!-- inject:content:cdn -->
+	<script
+			src="https://code.jquery.com/jquery-3.2.1.min.js"
+			integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			crossorigin="anonymous"></script>
+
+	<script
+			src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.2.js"
+			crossorigin="anonymous"></script>
+	<!-- endinject -->
 
 	<!-- inject:content:js:app.js -->
 	<script src="app.js"></script>

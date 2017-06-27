@@ -4,12 +4,31 @@ function SpeakerApp(rootNode) {
 
 	let id = '';
 
-	const host = '';
-	const year = '';
-	const url = host + '/api/profile/' + year + '/' + id;
+	const host = 'https://speaker-submission-test.azurewebsites.net';
+    const year = '2017';
+
+	const hostAuth = host + '/.auth/me';
+	const hostProfile = host + '/api/profile/' + year + '/';
 
 
     // ======= Model =======
+
+	function parseAuth(authObject) {
+		function getClaimValue(claims, type) {
+            return claims.filter(function (token) {
+                return token.typ === type;
+            })[0].val;
+        }
+
+        id = getClaimValue(authObject.user_claims, 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier');
+		self.speaker.firstName(getClaimValue(authObject.user_claims, 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname'));
+        self.speaker.lastName(getClaimValue(authObject.user_claims, 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname'));
+        self.speaker.email(getClaimValue(authObject.user_claims, 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'));
+    }
+
+    self.message = {
+	    isVisible: ko.observable(true)
+    };
 
 	self.travel = {
 		dates: [
@@ -80,8 +99,8 @@ function SpeakerApp(rootNode) {
             profile.accommodationType = profile.accommodationType.title;
 		}
 
-		if (!self.speaker.requireTransfer) {
-    		profile.transferType = '';
+		if (!self.speaker.requireTravel()) {
+    		profile.travelType = '';
 		}
 
         return profile;
@@ -94,6 +113,9 @@ function SpeakerApp(rootNode) {
 
         Object
             .keys(profile)
+			.filter(function (key) {
+				return !!profile[key];
+            })
             .forEach(function (key) {
             	self.speaker[key](profile[key]);
             });
@@ -126,9 +148,24 @@ function SpeakerApp(rootNode) {
 
 	// ======= API =======
 
+    function authenticate() {
+        return new Promise(function (resolve, reject) {
+            $.ajax(hostAuth, {
+                contentType: 'application/json',
+                method: 'get',
+                success: function(data) {
+                    resolve(data);
+                },
+                error: function (req, err) {
+                    reject(err);
+                }
+            });
+        });
+    }
+
     function createProfileIfNotExists() {
         return new Promise(function(resolve, reject) {
-            $.ajax(url, {
+            $.ajax(hostProfile + id, {
                 contentType: 'application/json',
                 method: 'post',
                 success: function() {
@@ -141,16 +178,38 @@ function SpeakerApp(rootNode) {
         });
     }
 
-	self.loadProfile = function () {
+	function loadProfile() {
 		return new Promise(function(resolve, reject) {
-
+			$.ajax(hostProfile + id, {
+				contentType: 'application/json',
+				method: 'get',
+				success: function(data) {
+					resolve(data);
+				},
+				error: function (req, err) {
+					reject(err);
+				}
+			});
 		});
-	};
+	}
 
 	self.saveProfile = function () {
 		return new Promise(function(resolve, reject) {
+            self.message.isVisible(true);
+
 			let profile = getFromForm();
-			console.log(profile);
+            $.ajax(hostProfile + id, {
+                contentType: 'application/json',
+                method: 'put',
+				data: JSON.stringify(profile),
+                success: function() {
+                    self.message.isVisible(false);
+                    resolve();
+                },
+                error: function (req, err) {
+                    reject(err);
+                }
+            });
 		});
 	};
 
@@ -158,13 +217,27 @@ function SpeakerApp(rootNode) {
     // ======= Initialization =======
 
 	self.init = function () {
+	    self.message.isVisible(true);
 		ko.applyBindings(self, root);
-		// createSpeaker()
-		// 	.then(function () {
-		// 		console.log('speaker profile created');
-		// 	}, function (err) {
-		// 		console.error(err);
-		// 	});
+
+        authenticate()
+            .then(function (authObject) {
+                parseAuth(authObject[0]);
+                return createProfileIfNotExists();
+            }, function (err) {
+                console.error(err);
+            })
+			.then(function () {
+				return loadProfile();
+            }, function (err) {
+                console.error(err);
+            })
+			.then(function (profile) {
+				setToForm(profile);
+                self.message.isVisible(false);
+			}, function (err) {
+				console.error(err);
+			});
 	};
 
 	return self;
