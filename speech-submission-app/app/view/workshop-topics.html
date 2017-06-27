@@ -18,6 +18,16 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-sm-2 control-label">Language</label>
+                <div class="col-sm-10">
+                    <select data-bind="value: $data.language" class="form-control">
+                        <option>English</option>
+                        <option>Russian</option>
+                        <option>Ukrainian</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
                 <button class="col-sm-1 btn btn-danger" data-bind="click: $parent.removeWorkshopTopic">
                     <span class="glyphicon glyphicon-trash"></span>
                 </button>
