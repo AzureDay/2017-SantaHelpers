@@ -29,19 +29,46 @@ gulp.task('build', function () {
         .pipe(gulp.dest('./dist'))
 });
 
+gulp.task('build:local', ['build'], function () {
+    let emptyCdn = {
+        starttag: '<!-- inject:content:cdn -->',
+        relative: true,
+        transform: function () {
+            return '';
+        }
+    };
+    return gulp.src('./dist/index.html')
+        .pipe(gulpInject(gulp.src('./dist/index.html'), emptyCdn))
+        .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('build:cdn', ['build'], function () {
+    let emptyLocal = {
+        starttag: '<!-- inject:content:local -->',
+        relative: true,
+        transform: function () {
+            return '';
+        }
+    };
+    return gulp.src('./dist/index.html')
+        .pipe(gulpInject(gulp.src('./dist/index.html'), emptyLocal))
+        .pipe(gulp.dest('./dist'));
+});
+
 gulp.task('watch', function() {
     let appFiles = ['./index.html', './app.js', './view/*.html'];
     watch(appFiles, batch(function (events, done) {
-        gulp.start('build', done);
+        gulp.start('build:local', done);
     }))
 });
 
-gulp.task('serve', ['build', 'watch'], function () {
-    gulp.src('./dist')
+gulp.task('serve', ['build:local', 'watch'], function () {
+    gulp.src('.')
         .pipe(server({
             livereload: {
                 enable: true,
                 clientConsole: true
-            }
+            },
+            defaultFile: './dist/index.html'
         }));
 });
