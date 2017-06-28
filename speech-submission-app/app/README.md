@@ -19,5 +19,5 @@ gulp serve
 ### Create single file distribution build
 
 ```bash
-gulp build
+gulp build:cdn
 ```
