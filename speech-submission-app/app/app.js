@@ -41,9 +41,9 @@ function SpeakerApp(rootNode) {
 			'September 12 or after'
 		],
 		accommodationTypes: [
-			{ title: '2 speakers', description: '2 speakers description' },
-            { title: '1 speaker', description: '1 speaker description' },
-            { title: '1 speaker + 1 guest', description: '1 speaker + 1 guest description' }
+			{ title: '2 speakers', description: 'two speakers in one twin room' },
+            { title: '1 speaker', description: 'one speaker in one single room' },
+            { title: '1 speaker + 1 guest', description: 'one speaker and one guest in twin room' }
 		],
 		travelTypes: [
             { title: 'airplane', description: '' },
@@ -58,6 +58,8 @@ function SpeakerApp(rootNode) {
 		lastName: ko.observable(''),
 		country: ko.observable(''),
         city: ko.observable(''),
+        company: ko.observable(''),
+        jobTitle: ko.observable(''),
 		phone: ko.observable(''),
 		email: ko.observable(''),
 		photoUrl: ko.observable(''),
