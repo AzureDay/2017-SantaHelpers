@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Speaker Submission Dashboard</title>
+
+    <link rel="stylesheet" type="text/css" href="./../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+</head>
+<body>
+
+<div id="app">
+
+    <script>
+        function writeFileContent(filePath) {
+            const fs = require('fs');
+            const path = require('path');
+
+            let filePathAbsolute = Array.isArray(filePath) ?
+                path.join.apply([__dirname].concat(filePath)) :
+                path.join(__dirname, filePath);
+
+            document.write(fs.readFileSync(filePathAbsolute, 'utf8'));
+        }
+    </script>
+
+    <div class="container">
+        <div data-bind="visible: message.isVisible" class="jumbotron">
+            <h1>Stay tuned...</h1>
+        </div>
+
+        <div data-bind="visible: !message.isVisible()" style="display: none;" class="form-horizontal">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#tabSpeakers" aria-controls="tabSpeakers" role="tab" data-toggle="tab">Speakers</a></li>
+                <li role="presentation"><a href="#tabWorkshops" aria-controls="tabWorkshops" role="tab" data-toggle="tab">Workshops</a></li>
+                <li role="presentation"><a href="#tabTopics" aria-controls="tabTopics" role="tab" data-toggle="tab">Topics</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="tabSpeakers">
+                    <script>
+                        writeFileContent('_speakers.html');
+                    </script>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tabWorkshops">
+                    <script>
+                        writeFileContent('_workshops.html');
+                    </script>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tabTopics">
+                    <script>
+                        writeFileContent('_topics.html');
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+    <script src="./../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./../../node_modules/knockout/build/output/knockout-latest.js"></script>
+
+    <script>if (window.module) module = window.module;</script>
+
+    <script src="./../../script/dashboard.js"></script>
+    <script>
+        let root = document.getElementById('app');
+        let app = new DashboardApp(root);
+        app.init();
+    </script>
+</div>
+
+</body>
+</html>

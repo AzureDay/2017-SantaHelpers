@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Speaker Submission Dashboard</title>
+
+    <link rel="stylesheet" type="text/css" href="./../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./../../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+</head>
+<body>
+
+<div id="app">
+
+    <div class="container">
+        <div data-bind="visible: message.isVisible" class="jumbotron">
+            <h1>Stay tuned...</h1>
+        </div>
+
+        <div data-bind="visible: !message.isVisible()" style="display: none;" class="form-horizontal">
+            <div class="form-group">
+                <label for="tbYear" class="col-sm-2 control-label">Year</label>
+                <div class="col-sm-10">
+                    <input id="tbYear" data-bind="textInput: login.year" placeholder="Year" type="number" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="tbPassword" class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-10">
+                    <input id="tbPassword" data-bind="textInput: login.password" placeholder="Password" type="password" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <button data-bind="click: login.tryLogin" class="btn btn-success col-xs-12">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+    <script src="./../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./../../node_modules/knockout/build/output/knockout-latest.js"></script>
+
+    <script>if (window.module) module = window.module;</script>
+
+    <script src="./../../script/login.js"></script>
+    <script>
+        let root = document.getElementById('app');
+        let app = new LoginApp(root);
+        app.init();
+    </script>
+</div>
+
+</body>
+</html>

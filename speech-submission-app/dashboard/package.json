@@ -1,0 +1,16 @@
+{
+  "name": "speech-submission-dashboard",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Boyko Anton <boyko.ant@live.com>",
+  "license": "MIT",
+  "dependencies": {
+    "azure-storage": "^2.2.0",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
+    "knockout": "^3.4.2"
+  }
+}
