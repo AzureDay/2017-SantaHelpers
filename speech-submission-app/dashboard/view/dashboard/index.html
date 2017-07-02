@@ -24,17 +24,29 @@
         }
     </script>
 
-    <div class="container">
+    <div class="container-fluid">
         <div data-bind="visible: message.isVisible" class="jumbotron">
             <h1>Stay tuned...</h1>
         </div>
 
         <div data-bind="visible: !message.isVisible()" style="display: none;" class="form-horizontal">
-            <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#tabSpeakers" aria-controls="tabSpeakers" role="tab" data-toggle="tab">Speakers</a></li>
-                <li role="presentation"><a href="#tabWorkshops" aria-controls="tabWorkshops" role="tab" data-toggle="tab">Workshops</a></li>
-                <li role="presentation"><a href="#tabTopics" aria-controls="tabTopics" role="tab" data-toggle="tab">Topics</a></li>
-            </ul>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#tabSpeakers" aria-controls="tabSpeakers" role="tab" data-toggle="tab">Speakers</a></li>
+                        <li role="presentation"><a href="#tabWorkshops" aria-controls="tabWorkshops" role="tab" data-toggle="tab">Workshops</a></li>
+                        <li role="presentation"><a href="#tabTopics" aria-controls="tabTopics" role="tab" data-toggle="tab">Topics</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <button data-bind="click: refresh" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-refresh"></span>&nbsp;
+                                Refresh
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="tabSpeakers">

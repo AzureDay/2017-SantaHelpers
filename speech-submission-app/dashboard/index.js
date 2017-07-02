@@ -4,6 +4,11 @@ const url = require('url');
 
 let win;
 
+global.dashboardConfigs = {
+    connectionString: '',
+    year: ''
+};
+
 function createWindow () {
     win = new BrowserWindow({width: 800, height: 600});
 

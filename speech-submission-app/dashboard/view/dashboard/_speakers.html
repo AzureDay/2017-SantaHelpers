@@ -1,1 +1,40 @@
-<h1>Speakers tab</h1>
+<div class="row">
+    <div class="col-md-1">#</div>
+    <div class="col-md-2">Full name</div>
+    <div class="col-md-2">Contacts</div>
+    <div class="col-md-2">Job</div>
+    <div class="col-md-2">Location</div>
+    <div class="col-md-3">Photo URL</div>
+</div>
+
+<div data-bind="foreach: profiles">
+    <div class="row">
+        <div class="col-md-1">
+            <span data-bind="text: $index"></span>.
+        </div>
+        <div class="col-md-2">
+            <span data-bind="text: $data.lastName"></span>
+            <span data-bind="text: $data.firstName"></span>
+        </div>
+        <div class="col-md-2">
+            <span data-bind="text: $data.email"></span><br/>
+            <span data-bind="text: $data.phone"></span>
+        </div>
+        <div class="col-md-2">
+            <span data-bind="text: $data.jobTitle"></span> @
+            <span data-bind="text: $data.company"></span>
+        </div>
+        <div class="col-md-2">
+            <span data-bind="text: $data.city"></span>
+            (<span data-bind="text: $data.country"></span>)
+        </div>
+        <div class="col-md-3">
+            <span data-bind="text: $data.photoUrl"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-11">
+            <span data-bind="text: $data.bio"></span>
+        </div>
+    </div>
+</div>

@@ -44,8 +44,9 @@ function LoginApp(rootNode) {
         self.message.isVisible(true);
         tryGetConnectionString()
             .then(function (response) {
-                process.env.AZURE_STORAGE_CONNECTION_STRING = response.connectionString;
-                process.env.AZURE_STORAGE_YEAR = self.login.year();
+                let dashboardConfigs = remote.getGlobal('dashboardConfigs');
+                dashboardConfigs.connectionString = response.connectionString;
+                dashboardConfigs.year = self.login.year();
 
                 remote.getCurrentWindow().loadURL(url.format({
                     pathname: path.join(__dirname, '..', '..', 'view', 'dashboard', 'index.html'),
