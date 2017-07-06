@@ -23,6 +23,11 @@ function LoginApp(rootNode) {
 
     // ======= Bindings =======
 
+    function handlePromiseError(error) {
+        console.error(error);
+        self.message.isVisible(false);
+    }
+
     function tryGetConnectionString() {
         let apiKey = self.login.password();
 
@@ -53,10 +58,7 @@ function LoginApp(rootNode) {
                     protocol: 'file:',
                     slashes: true
                 }));
-            }, function (error) {
-                console.error(error);
-                self.message.isVisible(false);
-            });
+            }, handlePromiseError);
     };
 
     // ======= Initialization =======

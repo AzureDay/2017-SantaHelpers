@@ -20,6 +20,11 @@ function DashboardApp(rootNode) {
 
     // ======= Bindings =======
 
+    function handlePromiseError(error) {
+        console.error(error);
+        self.message.isVisible(false);
+    }
+
     self.refresh = function() {
         self.message.isVisible(true);
 
@@ -29,31 +34,31 @@ function DashboardApp(rootNode) {
                     return getBlobContent(blob.name);
                 });
                 return Promise.all(promises);
-            }, function (error) {
-                console.error(error);
-                self.message.isVisible(false);
-            })
+            }, handlePromiseError)
             .then(function (speakersProfiles) {
-                self.profiles(speakersProfiles.sort(function(a, b) {
-                    if (a.lastName > b.lastName) {
-                        return 1;
-                    } else if (a.lastName < b.lastName) {
-                        return -1;
-                    } else if (a.lastName === b.lastName) {
-                        if (a.firstName > b.firstName) {
+                let profiles = speakersProfiles
+                    .filter(function (profile) {
+                        return !!profile;
+                    })
+                    .sort(function(a, b) {
+                        if (a.lastName > b.lastName) {
                             return 1;
-                        } else if (a.firstName < b.firstName) {
+                        } else if (a.lastName < b.lastName) {
                             return -1;
-                        } else if (a.firstName === b.firstName) {
-                            return 0;
+                        } else if (a.lastName === b.lastName) {
+                            if (a.firstName > b.firstName) {
+                                return 1;
+                            } else if (a.firstName < b.firstName) {
+                                return -1;
+                            } else if (a.firstName === b.firstName) {
+                                return 0;
+                            }
                         }
-                    }
-                }));
+                    });
+
+                self.profiles(profiles);
                 self.message.isVisible(false);
-            }, function (error) {
-                console.error(error);
-                self.message.isVisible(false);
-            });
+            }, handlePromiseError);
     };
 
     // ======= API =======
@@ -95,7 +100,12 @@ function DashboardApp(rootNode) {
                 }
 
                 let profile = JSON.parse(result);
-                resolve(profile);
+
+                if (Object.keys(profile).length === 0) {
+                    resolve(null);
+                } else {
+                    resolve(profile);
+                }
             })
         })
     }
