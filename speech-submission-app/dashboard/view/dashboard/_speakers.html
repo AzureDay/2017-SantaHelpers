@@ -37,4 +37,12 @@
             <span data-bind="text: $data.bio"></span>
         </div>
     </div>
+
+    <div data-bind="foreach: $data.socialProfiles">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-11">
+                <a target="_blank" data-bind="text: $data.url, attr: { href: $data.url }"></a>
+            </div>
+        </div>
+    </div>
 </div>
