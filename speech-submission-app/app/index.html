@@ -21,6 +21,8 @@
 		  	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
 			crossorigin="anonymous">
 	<!-- endinject -->
+
+	<link rel="stylesheet" type="text/css" href="../styles/style.css">
 </head>
 <body>
 
@@ -32,7 +34,8 @@
 			</div>
 
 			<div data-bind="visible: !message.isVisible()" style="display: none;" class="form-horizontal">
-				<h1>Azure Day 2017 Ukraine</h1>
+				<img src="../img/cfs-01b.jpg" class="img-responsive" alt="call for speakers" />
+				<h1>AzureDAY 2017 Ukraine</h1>
 
 				<!-- inject:content:html:view/speaker-profile.html -->
 				<!-- endinject -->
@@ -52,11 +55,21 @@
 				<!-- inject:content:html:view/other.html -->
 				<!-- endinject -->
 
-				<div class="row">
-					<button data-bind="click: saveProfile" class="btn btn-success col-xs-6">Save</button>
-					<a href="/" class="btn btn-default col-xs-6">Cancel</a>
-				</div>
+			</div>
+		</div>
 
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 margin10vertical">
+					<button data-bind="click: saveProfile" class="btn btn-success col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						Save
+					</button>
+				</div>
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 margin10vertical">
+					<a href="/" class="btn btn-default col-xs-12 col-sm-6 col-md-6 col-lg-6 col-sm-offset-6 col-md-offset-6 col-lg-offset-6">
+						Cancel
+					</a>
+				</div>
 			</div>
 		</div>
 

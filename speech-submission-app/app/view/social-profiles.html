@@ -1,15 +1,20 @@
 <div class="panel panel-default">
-    <div class="panel-heading">Social profiles</div>
+    <div class="panel-heading">
+        <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+        Social profiles
+    </div>
     <div class="panel-body">
         <div data-bind="foreach: speaker.socialProfiles">
             <div class="form-group">
-                <label class="col-sm-2 control-label">Social profile url</label>
-                <div class="col-sm-9">
+                <label class="col-xs-3 col-sm-2 col-md-2 col-lg-2 control-label">Social profile url</label>
+                <div class="col-xs-6 col-sm-8 col-md-8 col-lg-8">
                     <input data-bind="textInput: $data.url" placeholder="Social profile url" type="text" class="form-control">
                 </div>
-                <button class="col-sm-1 btn btn-danger" data-bind="click: $parent.removeSocialProfile">
-                    <span class="glyphicon glyphicon-trash"></span>
-                </button>
+                <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
+                    <button class="btn btn-danger" data-bind="click: $parent.removeSocialProfile">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

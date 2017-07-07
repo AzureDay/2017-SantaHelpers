@@ -1,5 +1,8 @@
 <div class="panel panel-default">
-    <div class="panel-heading">Workshop topics</div>
+    <div class="panel-heading">
+        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+        Workshop topics
+    </div>
     <div class="panel-body">
         <div class="alert alert-info">
             <p>
@@ -15,14 +18,14 @@
 
         <div data-bind="foreach: speaker.workshopTopics">
             <div class="form-group">
-                <label class="col-sm-2 control-label">Workshop topic</label>
-                <div class="col-sm-10">
+                <label class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Workshop topic</label>
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                     <input data-bind="textInput: $data.topic" placeholder="Workshop topic" type="text" class="form-control">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">Level</label>
-                <div class="col-sm-10">
+                <label class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Level</label>
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                     <select data-bind="value: $data.level" class="form-control">
                         <option>Expert</option>
                         <option>Intermediate</option>
@@ -30,8 +33,8 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">Language</label>
-                <div class="col-sm-10">
+                <label class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Language</label>
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                     <select data-bind="value: $data.language" class="form-control">
                         <option>English</option>
                         <option>Russian</option>
@@ -40,8 +43,8 @@
                 </div>
             </div>
             <div class="form-group">
-                <button class="col-sm-1 btn btn-danger" data-bind="click: $parent.removeWorkshopTopic">
-                    <span class="glyphicon glyphicon-trash"></span>
+                <button class="col-xs-3 col-xs-offset-8 col-sm-2 col-sm-offset-9 col-md-2 col-md-offset-9 col-lg-2 col-lg-offset-9 btn btn-danger" data-bind="click: $parent.removeWorkshopTopic">
+                    <span class="glyphicon glyphicon-trash"></span> Delete
                 </button>
             </div>
         </div>
