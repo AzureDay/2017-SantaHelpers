@@ -23,9 +23,19 @@ gulp.task('build', function () {
         }
     };
 
+    let sourcesCss = gulp.src(['./styles/*.css']);
+    let injectCssContent = {
+        starttag: '<!-- inject:content:css:{{path}} -->',
+        relative: true,
+        transform: function (filePath, file) {
+            return '<style>' + file.contents.toString('utf8') + '</style>'
+        }
+    };
+
     return gulp.src('./index.html')
         .pipe(gulpInject(sourcesJs, injectJsContent))
         .pipe(gulpInject(sourcesHtml, injectHtmlContent))
+        .pipe(gulpInject(sourcesCss, injectCssContent))
         .pipe(gulp.dest('./dist'))
 });
 
