@@ -115,9 +115,6 @@ function SpeakerApp(rootNode) {
 
         Object
             .keys(profile)
-			.filter(function (key) {
-				return !!profile[key];
-            })
             .forEach(function (key) {
             	self.speaker[key](profile[key]);
             });
