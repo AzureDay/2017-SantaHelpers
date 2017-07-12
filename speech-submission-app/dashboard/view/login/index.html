@@ -35,18 +35,18 @@
         </div>
     </div>
 
-    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
-
-    <script src="./../../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="./../../node_modules/knockout/build/output/knockout-latest.js"></script>
 
-    <script>if (window.module) module = window.module;</script>
+    <script src="./../../script/DashboardConfigs.js"></script>
+    <script src="./../../script/DashboardUtils.js"></script>
 
-    <script src="./../../script/login.js"></script>
+    <script src="./../../script/app/LoginApp.js"></script>
     <script>
-        let root = document.getElementById('app');
-        let app = new LoginApp(root);
-        app.init();
+        (function(){
+            let root = document.getElementById('app');
+            let loginApp = new LoginApp(root);
+            loginApp.init();
+        })();
     </script>
 </div>
 

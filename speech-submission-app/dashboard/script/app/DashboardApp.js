@@ -2,11 +2,9 @@ function DashboardApp(rootNode) {
     let self = this;
     let root = rootNode;
 
-    const { remote, shell } = require('electron');
-    const azureStorage = require('azure-storage');
-
-    let dashboardConfigs = remote.getGlobal('dashboardConfigs');
-    let azureStorageBlobService = azureStorage.createBlobService(dashboardConfigs.connectionString);
+    let dashboardUtils = new DashboardUtils();
+    let dashboardConfigs = new DashboardConfigs();
+    let azureBlobStorage = new AzureBlobStorage(dashboardConfigs.connectionString);
 
 
     // ======= Model =======
@@ -41,10 +39,10 @@ function DashboardApp(rootNode) {
     self.refresh = function() {
         self.message.isVisible(true);
 
-        getBlobsList()
+        azureBlobStorage.getBlobsList()
             .then(function (blobs) {
                 let promises = blobs.map(function (blob) {
-                    return getBlobContent(blob.name);
+                    return azureBlobStorage.getBlobAsJson(blob.name);
                 });
                 return Promise.all(promises);
             }, handlePromiseError)
@@ -75,62 +73,13 @@ function DashboardApp(rootNode) {
     };
 
     self.openPhotoUrl = function(data, event) {
-        shell.openExternal(data.photoUrl);
+        dashboardUtils.openExternal(data.photoUrl);
     };
 
     self.openSocialUrl = function(data, event) {
-        shell.openExternal(data.url);
+        dashboardUtils.openExternal(data.url);
     };
 
-
-    // ======= API =======
-
-    function getBlobsList(blobsList, token) {
-        return new Promise(function (resolve, reject) {
-            azureStorageBlobService.listBlobsSegmentedWithPrefix('profiles', process.env.AZURE_STORAGE_YEAR, token, function (error, result, response) {
-                if (!!error) {
-                    reject(error);
-                    return;
-                }
-
-                if (!blobsList) {
-                    blobsList = [];
-                }
-
-                blobsList = blobsList.concat(result.entries);
-
-                if (!!result.continuationToken) {
-                    getBlobsList(blobsList, result.continuationToken)
-                        .then(function (results) {
-                            resolve(results);
-                        }, function (error) {
-                            reject(error);
-                        });
-                } else {
-                    resolve(blobsList);
-                }
-            })
-        });
-    }
-
-    function getBlobContent(blobName) {
-        return new Promise(function (resolve, reject) {
-            azureStorageBlobService.getBlobToText('profiles', blobName, function (error, result, response) {
-                if (!!error) {
-                    reject(error);
-                    return;
-                }
-
-                let profile = JSON.parse(result);
-
-                if (Object.keys(profile).length === 0) {
-                    resolve(null);
-                } else {
-                    resolve(profile);
-                }
-            })
-        })
-    }
 
     // ======= Initialization =======
 

@@ -87,12 +87,18 @@
     <script src="./../../node_modules/knockout/build/output/knockout-latest.js"></script>
 
     <script>if (window.module) module = window.module;</script>
+    
+    <script src="./../../script/DashboardConfigs.js"></script>
+    <script src="./../../script/DashboardUtils.js"></script>
+    <script src="./../../script/data/AzureBlobStorage.js"></script>
 
-    <script src="./../../script/dashboard.js"></script>
+    <script src="./../../script/app/DashboardApp.js"></script>
     <script>
-        let root = document.getElementById('app');
-        let app = new DashboardApp(root);
-        app.init();
+        (function(){
+            let root = document.getElementById('app');
+            let dashboardApp = new DashboardApp(root);
+            dashboardApp.init();
+        })();
     </script>
 </div>
 
