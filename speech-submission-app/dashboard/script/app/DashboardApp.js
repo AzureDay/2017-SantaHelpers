@@ -73,11 +73,11 @@ function DashboardApp(rootNode) {
     };
 
     self.openPhotoUrl = function(data, event) {
-        dashboardUtils.openExternal(data.photoUrl);
+        dashboardUtils.openExternalUrl(data.photoUrl);
     };
 
     self.openSocialUrl = function(data, event) {
-        dashboardUtils.openExternal(data.url);
+        dashboardUtils.openExternalUrl(data.url);
     };
 
 

@@ -10,7 +10,7 @@ class DashboardUtils {
         this._https = require('https');
     }
 
-    loadURL(newUrl) {
+    setCurrentWindowUrl(newUrl) {
         let absoluteUrl = this._url.format({
             pathname: this._path.join(__dirname, newUrl),
             protocol: 'file:',
@@ -20,7 +20,7 @@ class DashboardUtils {
         this._remote.getCurrentWindow().loadURL(absoluteUrl);
     }
 
-    openExternal(url) {
+    openExternalUrl(url) {
         this._shell.openExternal(url);
     }
 

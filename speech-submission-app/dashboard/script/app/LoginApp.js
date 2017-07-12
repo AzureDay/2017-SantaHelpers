@@ -6,6 +6,7 @@ function LoginApp(rootNode) {
     const hostAuth = host + '/api/dashboard/connectionString?code=';
 
     let dashboardUtils = new DashboardUtils();
+    let dashboardConfigs = new DashboardConfigs();
 
     // ======= Model =======
 
@@ -37,12 +38,11 @@ function LoginApp(rootNode) {
         tryGetConnectionString()
             .then(function (response) {
                 let responseData = JSON.parse(response);
-
-                let dashboardConfigs = new DashboardConfigs();
+                
                 dashboardConfigs.connectionString = responseData.connectionString;
                 dashboardConfigs.year = self.login.year();
 
-                dashboardUtils.loadURL('../../view/dashboard/index.html');
+                dashboardUtils.setCurrentWindowUrl('../../view/dashboard/index.html');
             }, handlePromiseError);
     };
 
