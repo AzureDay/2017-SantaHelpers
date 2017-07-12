@@ -17,6 +17,19 @@ function DashboardApp(rootNode) {
 
     self.profiles = ko.observableArray([]);
 
+    self.travelRequests = ko.computed(function() {
+        return self.profiles()
+            .filter(function(profile) {
+                return profile.requireTravel;
+            });
+    });
+
+    self.accommodationRequests = ko.computed(function() {
+        return self.profiles()
+            .filter(function(profile) {
+                return profile.requireAccommodation;
+            });
+    });
 
     // ======= Bindings =======
 

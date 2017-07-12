@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-md-2">Speaker name</div>
+    <div class="col-md-2">Arrival</div>
+    <div class="col-md-2">Departure</div>
+    <div class="col-md-2">Type</div>
+    <div class="col-md-2">Travels with guest</div>
+</div>
+
+<div data-bind="foreach: travelRequests">
+    <div class="row">
+        <div class="col-md-2">
+            <span data-bind="text: $data.lastName"></span>
+            <span data-bind="text: $data.firstName"></span>
+        </div>
+        <div class="col-md-2">
+            <span data-bind="text: $data.dateOfArrival"></span><br/>
+        </div>
+        <div class="col-md-2">
+            <span data-bind="text: $data.dateOfDeparture"></span>
+        </div>
+        <div class="col-md-2">
+            By <span data-bind="text: $data.travelType.title"></span><br/>
+            from <span data-bind="text: $data.city"></span>
+            (<span data-bind="text: $data.country"></span>)
+        </div>
+        <div class="col-md-2">
+            <span data-bind="visible: $data.travelWithGuest" class="glyphicon glyphicon-ok"></span>
+        </div>
+    </div>
+</div>
