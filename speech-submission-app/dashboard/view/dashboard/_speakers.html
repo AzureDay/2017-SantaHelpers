@@ -8,6 +8,7 @@
 </div>
 
 <div data-bind="foreach: profiles">
+
     <div class="row">
         <div class="col-md-1">
             <span data-bind="text: $index() + 1"></span>.
@@ -29,11 +30,15 @@
             (<span data-bind="text: $data.country"></span>)
         </div>
         <div class="col-md-3">
-            <span data-bind="text: $data.photoUrl"></span>
+            <button data-bind="click: $root.openPhotoUrl" class="btn btn-xs btn-default">open in browser</button>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-offset-1 col-md-11">
+
+    <div class="row" data-bind="visible: $data.bio">
+        <div class="col-md-1 text-right">
+            Bio
+        </div>
+        <div class="col-md-11">
             <span data-bind="text: $data.bio"></span>
         </div>
     </div>
@@ -41,8 +46,19 @@
     <div data-bind="foreach: $data.socialProfiles">
         <div class="row">
             <div class="col-md-offset-1 col-md-11">
-                <a target="_blank" data-bind="text: $data.url, attr: { href: $data.url }"></a>
+                <button data-bind="click: $root.openSocialUrl" class="btn btn-xs btn-default">open in browser</button>
+                <span data-bind="text: $data.url"></span>
             </div>
         </div>
     </div>
+
+    <div class="row" data-bind="visible: $data.notes">
+        <div class="col-md-1 text-right">
+            Notes
+        </div>
+        <div class="col-md-11">
+            <span data-bind="text: $data.notes"></span>
+        </div>
+    </div>
+
 </div>

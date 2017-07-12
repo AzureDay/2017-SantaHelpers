@@ -2,7 +2,7 @@ function DashboardApp(rootNode) {
     let self = this;
     let root = rootNode;
 
-    const { remote } = require('electron');
+    const { remote, shell } = require('electron');
     const azureStorage = require('azure-storage');
 
     let dashboardConfigs = remote.getGlobal('dashboardConfigs');
@@ -60,6 +60,15 @@ function DashboardApp(rootNode) {
                 self.message.isVisible(false);
             }, handlePromiseError);
     };
+
+    self.openPhotoUrl = function(data, event) {
+        shell.openExternal(data.photoUrl);
+    };
+
+    self.openSocialUrl = function(data, event) {
+        shell.openExternal(data.url);
+    };
+
 
     // ======= API =======
 
