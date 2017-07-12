@@ -6,7 +6,8 @@ let win;
 
 global.dashboardConfigs = {
     connectionString: '',
-    year: ''
+    year: '',
+    root: __dirname
 };
 
 function createWindow () {

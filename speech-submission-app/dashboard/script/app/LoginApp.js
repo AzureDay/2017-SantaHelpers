@@ -2,11 +2,12 @@ function LoginApp(rootNode) {
     let self = this;
     let root = rootNode;
 
-    const host = 'https://speaker-dashboard.azurewebsites.net';
-    const hostAuth = host + '/api/dashboard/connectionString?code=';
+    debugger;
 
     let dashboardUtils = new DashboardUtils();
     let dashboardConfigs = new DashboardConfigs();
+
+    const hostAuth = dashboardConfigs.apiHost + '/api/dashboard/connectionString?code=';
 
     // ======= Model =======
 
