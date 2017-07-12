@@ -1,1 +1,27 @@
-<h1>Topics tab</h1>
+<div class="row">
+    <div class="col-md-2">Speaker name</div>
+    <div class="col-md-8">Topic</div>
+    <div class="col-md-1">Level</div>
+    <div class="col-md-1">Language</div>
+</div>
+
+<div data-bind="foreach: profiles">
+    <div data-bind="foreach: $data.conferenceTopics">
+        <div class="row">
+            <div class="col-md-2">
+                <span data-bind="text: $parent.lastName"></span>
+                <span data-bind="text: $parent.firstName"></span>
+            </div>
+            <div class="col-md-8">
+                <span data-bind="text: $data.title"></span><br/>
+                <span data-bind="text: $data.description"></span><br/>
+            </div>
+            <div class="col-md-1">
+                <span data-bind="text: $data.level"></span>
+            </div>
+            <div class="col-md-1">
+                <span data-bind="text: $data.language"></span>
+            </div>
+        </div>
+    </div>
+</div>
