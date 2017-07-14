@@ -1,51 +1,51 @@
 <div class="row">
-    <div class="col-md-1">#</div>
-    <div class="col-md-2">Full name</div>
-    <div class="col-md-2">Contacts</div>
-    <div class="col-md-2">Job</div>
-    <div class="col-md-2">Location</div>
-    <div class="col-md-3">Photo URL</div>
+    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">#</div>
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Full name</div>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Contacts</div>
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Job</div>
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Location</div>
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Photo URL</div>
 </div>
 
 <div data-bind="foreach: profiles">
 
     <div class="row">
-        <div class="col-md-1">
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
             <span data-bind="text: $index() + 1"></span>.
         </div>
-        <div class="col-md-2">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <span data-bind="text: $data.lastName"></span>
             <span data-bind="text: $data.firstName"></span>
         </div>
-        <div class="col-md-2">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
             <span data-bind="text: $data.email"></span><br/>
             <span data-bind="text: $data.phone"></span>
         </div>
-        <div class="col-md-2">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <span data-bind="text: $data.jobTitle"></span> @
             <span data-bind="text: $data.company"></span>
         </div>
-        <div class="col-md-2">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <span data-bind="text: $data.city"></span>
             (<span data-bind="text: $data.country"></span>)
         </div>
-        <div class="col-md-3">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <button data-bind="click: $root.openPhotoUrl" class="btn btn-xs btn-default">open in browser</button>
         </div>
     </div>
 
     <div class="row" data-bind="visible: $data.bio">
-        <div class="col-md-1 text-right">
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 text-right">
             Bio
         </div>
-        <div class="col-md-11">
-            <span data-bind="text: $data.bio"></span>
+        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+            <span data-bind="html: $data.bio"></span>
         </div>
     </div>
 
     <div data-bind="foreach: $data.socialProfiles">
         <div class="row">
-            <div class="col-md-offset-1 col-md-11">
+            <div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-11 col-sm-11 col-md-11 col-lg-11">
                 <button data-bind="click: $root.openSocialUrl" class="btn btn-xs btn-default">open in browser</button>
                 <span data-bind="text: $data.url"></span>
             </div>
@@ -53,11 +53,11 @@
     </div>
 
     <div class="row" data-bind="visible: $data.notes">
-        <div class="col-md-1 text-right">
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 text-right">
             Notes
         </div>
-        <div class="col-md-11">
-            <span data-bind="text: $data.notes"></span>
+        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+            <span data-bind="html: $data.notes"></span>
         </div>
     </div>
 

@@ -15,9 +15,11 @@ function SpeakerApp(rootNode) {
 
 	function parseAuth(authObject) {
 		function getClaimValue(claims, type) {
-            return claims.filter(function (token) {
+            let claim = claims.filter(function (token) {
                 return token.typ === type;
-            })[0].val;
+            })[0];
+
+            return claim ? claim.val : ''; 
         }
 
         id = getClaimValue(authObject.user_claims, 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier');

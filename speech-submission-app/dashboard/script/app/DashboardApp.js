@@ -65,6 +65,36 @@ function DashboardApp(rootNode) {
                                 return 0;
                             }
                         }
+                    })
+                    .map(function(profile) {
+                        if (profile.bio) {
+                            profile.bio = profile.bio
+                                .replace('\r\n', '<br/>')
+                                .replace('\r', '<br/>')
+                                .replace('\n', '<br/>');
+                        }
+
+                        if (profile.notes) {
+                            profile.notes = profile.notes
+                                .replace('\r\n', '<br/>')
+                                .replace('\r', '<br/>')
+                                .replace('\n', '<br/>');
+                        }
+
+                        if (profile.conferenceTopics) {
+                            profile.conferenceTopics
+                                .filter(function(topic) {
+                                    return topic.description;
+                                })
+                                .forEach(function(topic) {
+                                    topic.description = topic.description
+                                        .replace('\r\n', '<br/>')
+                                        .replace('\r', '<br/>')
+                                        .replace('\n', '<br/>');
+                                });
+                        }
+
+                        return profile;
                     });
 
                 self.profiles(profiles);
