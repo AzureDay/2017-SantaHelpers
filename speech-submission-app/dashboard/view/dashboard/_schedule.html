@@ -1,0 +1,19 @@
+<h3>Schedule</h3>
+
+<button data-bind="click: addRoom" class="btn btn-primary">add room</button>
+<button data-bind="click: addTimeSlot" class="btn btn-primary">add time slot</button>
+
+<table border="1" style="width: 100%;">
+    <thead>
+        <tr data-bind="foreach: $root.rooms">
+            <td>room <span data-bind="text: $index() + 1"></span></td>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: $root.timeSlots">
+        <tr data-bind="foreach: $root.rooms">
+            <td>
+                room <span data-bind="text: $index() + 1"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
