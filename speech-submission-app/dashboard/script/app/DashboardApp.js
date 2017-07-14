@@ -67,6 +67,20 @@ function DashboardApp(rootNode) {
                         }
                     })
                     .map(function(profile) {
+                        if (profile.bio) {
+                            profile.bio = profile.bio
+                                .replace('\r\n', '<br/>')
+                                .replace('\r', '<br/>')
+                                .replace('\n', '<br/>');
+                        }
+
+                        if (profile.notes) {
+                            profile.notes = profile.notes
+                                .replace('\r\n', '<br/>')
+                                .replace('\r', '<br/>')
+                                .replace('\n', '<br/>');
+                        }
+
                         if (profile.conferenceTopics) {
                             profile.conferenceTopics
                                 .filter(function(topic) {
