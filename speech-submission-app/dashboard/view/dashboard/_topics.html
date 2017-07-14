@@ -1,27 +1,37 @@
 <div class="row">
-    <div class="col-md-2">Speaker name</div>
-    <div class="col-md-8">Topic</div>
+    <div class="col-md-1">#</div>
+    <div class="col-md-9">Topic</div>
     <div class="col-md-1">Level</div>
     <div class="col-md-1">Language</div>
 </div>
 
 <div data-bind="foreach: profiles">
-    <div data-bind="foreach: $data.conferenceTopics">
-        <div class="row">
-            <div class="col-md-2">
-                <span data-bind="text: $parent.lastName"></span>
-                <span data-bind="text: $parent.firstName"></span>
-            </div>
-            <div class="col-md-8">
-                <span data-bind="text: $data.title"></span><br/>
-                <span data-bind="text: $data.description"></span><br/>
-            </div>
-            <div class="col-md-1">
-                <span data-bind="text: $data.level"></span>
-            </div>
-            <div class="col-md-1">
-                <span data-bind="text: $data.language"></span>
-            </div>
-        </div>
-    </div>
+	<div data-bind="visible: $data.conferenceTopics.length > 0">
+		<div class="row">
+			<div class="col-md-12">
+				<h3>
+					<span data-bind="text: $data.lastName"></span>
+					<span data-bind="text: $data.firstName"></span>
+				</h3>
+			</div>
+		</div>
+	    <div data-bind="foreach: $data.conferenceTopics">
+	        <div class="row">
+		        <div class="col-md-1">
+			        <span data-bind="text: $index() + 1"></span>.
+		        </div>
+	            <div class="col-md-9">
+	                <h4 data-bind="text: $data.title"></h4>
+	                <p data-bind="text: $data.description"></p>
+	            </div>
+	            <div class="col-md-1">
+	                <span data-bind="text: $data.level"></span>
+	            </div>
+	            <div class="col-md-1">
+	                <span data-bind="text: $data.language"></span>
+	            </div>
+	        </div>
+	    </div>
+		<hr/>
+	</div>
 </div>
