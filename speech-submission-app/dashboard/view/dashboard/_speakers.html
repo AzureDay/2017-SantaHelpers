@@ -3,8 +3,10 @@
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Full name</div>
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Contacts</div>
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Job</div>
-    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Location</div>
-    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Photo URL</div>
+    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Location</div>
+    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Photo URL</div>
+	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Workshops</div>
+	<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Topics</div>
 </div>
 
 <div data-bind="foreach: profiles">
@@ -25,13 +27,21 @@
             <span data-bind="text: $data.jobTitle"></span> @
             <span data-bind="text: $data.company"></span>
         </div>
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
             <span data-bind="text: $data.city"></span>
             (<span data-bind="text: $data.country"></span>)
         </div>
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
             <button data-bind="click: $root.openPhotoUrl" class="btn btn-xs btn-default">open in browser</button>
         </div>
+        <div data-bind="css: { 'alert-danger': $data.workshopTopics.length === 0 }"
+             class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+			<span data-bind="text: $data.workshopTopics.length"></span>
+        </div>
+	    <div data-bind="css: { 'alert-danger': $data.conferenceTopics.length === 0 }"
+	         class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+		    <span data-bind="text: $data.conferenceTopics.length"></span>
+	    </div>
     </div>
 
     <div class="row" data-bind="visible: $data.bio">
