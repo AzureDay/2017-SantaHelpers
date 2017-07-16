@@ -3,6 +3,7 @@ let gulpInject = require('gulp-inject');
 let server = require('gulp-server-livereload');
 let watch = require('gulp-watch');
 let batch = require('gulp-batch');
+let htmlMinify = require('gulp-html-minifier');
 
 gulp.task('build', function () {
     let sourcesJs = gulp.src(['./app.js']);
@@ -41,6 +42,8 @@ gulp.task('build', function () {
 		}
 	};
 
+
+
     return gulp.src('./index.html')
         .pipe(gulpInject(sourcesJs, injectJsContent))
         .pipe(gulpInject(sourcesHtml, injectHtmlContent))
@@ -70,8 +73,20 @@ gulp.task('build:cdn', ['build'], function () {
             return '';
         }
     };
+
+	let htmlMinifyOptions = {
+		collapseInlineTagWhitespace: true,
+		collapseWhitespace: true,
+		minifyCSS: true,
+		minifyJS: true,
+		removeComments: true,
+		removeEmptyAttributes: true,
+		removeRedundantAttributes: true
+	};
+
     return gulp.src('./dist/index.html')
         .pipe(gulpInject(gulp.src('./dist/index.html'), emptyLocal))
+	    .pipe(htmlMinify(htmlMinifyOptions))
         .pipe(gulp.dest('./dist'));
 });
 
