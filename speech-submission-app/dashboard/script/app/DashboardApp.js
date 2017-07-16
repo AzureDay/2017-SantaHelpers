@@ -71,17 +71,11 @@ function DashboardApp(rootNode) {
                     })
                     .map(function(profile) {
                         if (profile.bio) {
-                            profile.bio = profile.bio
-                                .replace('\r\n', '<br/>')
-                                .replace('\r', '<br/>')
-                                .replace('\n', '<br/>');
+                            profile.bio = profile.bio.htmlLineBreak();
                         }
 
                         if (profile.notes) {
-                            profile.notes = profile.notes
-                                .replace('\r\n', '<br/>')
-                                .replace('\r', '<br/>')
-                                .replace('\n', '<br/>');
+                            profile.notes = profile.notes.htmlLineBreak();
                         }
 
                         if (profile.conferenceTopics) {
@@ -90,10 +84,7 @@ function DashboardApp(rootNode) {
                                     return topic.description;
                                 })
                                 .forEach(function(topic) {
-                                    topic.description = topic.description
-                                        .replace('\r\n', '<br/>')
-                                        .replace('\r', '<br/>')
-                                        .replace('\n', '<br/>');
+                                    topic.description = topic.description.htmlLineBreak();
                                 });
                         }
 
@@ -105,11 +96,11 @@ function DashboardApp(rootNode) {
             }, handlePromiseError);
     };
 
-    self.openPhotoUrl = function(data, event) {
+    self.openPhotoUrl = function(data) {
         dashboardUtils.openExternalUrl(data.photoUrl);
     };
 
-    self.openSocialUrl = function(data, event) {
+    self.openSocialUrl = function(data) {
         dashboardUtils.openExternalUrl(data.url);
     };
 
