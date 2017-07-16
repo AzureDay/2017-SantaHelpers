@@ -7,7 +7,7 @@ class AzureBlobStorage {
     }
 
     getBlobsList(blobsList, token) {
-        var self = this;
+        let self = this;
 
         return new Promise(function (resolve, reject) {
             self._azureStorageBlobService.listBlobsSegmentedWithPrefix(self._profileContainerName, self._year, token, function (error, result, response) {
@@ -37,7 +37,7 @@ class AzureBlobStorage {
     }
 
     getBlobAsJson(blobName) {
-        var self = this;
+        let self = this;
 
         return new Promise(function (resolve, reject) {
             self._azureStorageBlobService.getBlobToText(self._profileContainerName, blobName, function (error, result, response) {

@@ -12,8 +12,6 @@ class DashboardConfigs {
     }
 
     get apiHost() {
-        debugger;
-
         if (!this._apiHost) {
             let configFilePath = this._path.join(this.root, 'config.json');
             let configFileContent = this._fs.readFileSync(configFilePath, 'utf8');
