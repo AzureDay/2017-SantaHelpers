@@ -6,12 +6,12 @@
 	<table border="1" style="width: 100%;">
         <thead>
             <tr>
-	            <td rowspan="2" class="text-center">Time slots</td>
+	            <td rowspan="2" class="text-center" data-bind="attr: { style: 'width:' + ( 100 / ($data.rooms.length + 1) ) + '%' }">Time slots</td>
 	            <td data-bind="attr: { colspan: $data.rooms.length }" class="text-center">Rooms</td>
             </tr>
 	        <tr>
 		        <!-- ko foreach: $data.rooms -->
-		            <td class="text-center">
+		            <td class="text-center" data-bind="attr: { style: 'width:' + ( 100 / ($parent.rooms.length + 1) ) + '%' }">
 			            <span data-bind="text: $data"></span>
 		            </td>
 		        <!-- /ko -->
