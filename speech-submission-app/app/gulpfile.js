@@ -32,10 +32,20 @@ gulp.task('build', function () {
         }
     };
 
+	let sourcesJpeg = gulp.src(['./img/*.jpeg']);
+	let injectJpegContent = {
+		starttag: '<!-- inject:content:jpeg:{{path}} -->',
+		relative: true,
+		transform: function (filePath, file) {
+			return '<img class="img-responsive" src="data:image/jpeg;base64,' + file.contents.toString('base64') + '"/>'
+		}
+	};
+
     return gulp.src('./index.html')
         .pipe(gulpInject(sourcesJs, injectJsContent))
         .pipe(gulpInject(sourcesHtml, injectHtmlContent))
         .pipe(gulpInject(sourcesCss, injectCssContent))
+	    .pipe(gulpInject(sourcesJpeg, injectJpegContent))
         .pipe(gulp.dest('./dist'))
 });
 

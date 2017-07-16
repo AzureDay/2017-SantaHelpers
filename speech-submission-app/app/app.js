@@ -4,7 +4,7 @@ function SpeakerApp(rootNode) {
 
 	let id = '';
 
-	const host = 'https://speaker-submission-test.azurewebsites.net';
+	const host = 'https://speaker-submission.azurewebsites.net';
     const year = '2017';
 
 	const hostAuth = host + '/.auth/me';

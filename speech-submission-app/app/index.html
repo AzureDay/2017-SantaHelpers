@@ -23,7 +23,6 @@
 	<!-- endinject -->
 
 	<!-- inject:content:css:styles/style.css -->
-	<link rel="stylesheet" type="text/css" href="../styles/style.css">
 	<!-- endinject -->
 </head>
 <body>
@@ -36,7 +35,9 @@
 			</div>
 
 			<div data-bind="visible: !message.isVisible()" style="display: none;" class="form-horizontal">
-				<img src="../img/cfs-01b.jpg" class="img-responsive" alt="call for speakers" />
+				<!-- inject:content:jpeg:img/cfs-01b.jpeg -->
+				<!-- endinject -->
+
 				<h1>AzureDAY 2017 Ukraine</h1>
 
 				<!-- inject:content:html:view/speaker-profile.html -->
@@ -90,7 +91,6 @@
 	<!-- endinject -->
 
 	<!-- inject:content:js:app.js -->
-	<script src="app.js"></script>
 	<!-- endinject -->
 
 	<script>
