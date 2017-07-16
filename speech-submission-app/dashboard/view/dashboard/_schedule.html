@@ -1,19 +1,42 @@
 <h3>Schedule</h3>
 
-<button data-bind="click: addRoom" class="btn btn-primary">add room</button>
-<button data-bind="click: addTimeSlot" class="btn btn-primary">add time slot</button>
+<div data-bind="foreach: schedule.days">
+    <h4>Day <span data-bind="text: $index() + 1"></span></h4>
 
-<table border="1" style="width: 100%;">
-    <thead>
-        <tr data-bind="foreach: $root.rooms">
-            <td>room <span data-bind="text: $index() + 1"></span></td>
-        </tr>
-    </thead>
-    <tbody data-bind="foreach: $root.timeSlots">
-        <tr data-bind="foreach: $root.rooms">
-            <td>
-                room <span data-bind="text: $index() + 1"></span>
-            </td>
-        </tr>
-    </tbody>
-</table>
+	<table border="1" style="width: 100%;">
+        <thead>
+            <tr>
+	            <td rowspan="2" class="text-center">Time slots</td>
+	            <td data-bind="attr: { colspan: $data.rooms.length }" class="text-center">Rooms</td>
+            </tr>
+	        <tr>
+		        <!-- ko foreach: $data.rooms -->
+		            <td class="text-center">
+			            <span data-bind="text: $data"></span>
+		            </td>
+		        <!-- /ko -->
+	        </tr>
+        </thead>
+        <tbody data-bind="foreach: $data.timeSlots">
+            <tr data-bind="if: $data.isMerged">
+	            <td>
+		            <span data-bind="text: $data.slot"></span>
+	            </td>
+	            <td data-bind="attr: { colspan: $parent.rooms.length }"
+	                class="text-center">
+		            <span data-bind="text: $data.title"></span>
+	            </td>
+            </tr>
+            <tr data-bind="if: !$data.isMerged">
+	            <td>
+		            <span data-bind="text: $data.slot"></span>
+	            </td>
+	            <!-- ko foreach: $parent.rooms -->
+		            <td>
+			            <span data-bind="text: $data"></span>
+		            </td>
+	            <!-- /ko -->
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,45 @@
+{
+	"days": [{
+		"rooms": [
+			"President A",
+			"President B",
+			"President C",
+			"President D",
+			"President E"
+		],
+		"timeSlots": [
+			{ "slot": "9:00 - 9:30","title": "registration", "isMerged": true },
+			{ "slot": "9:30 - 11:30", "title": "", "isMerged": false },
+			{ "slot": "11:30 - 12:00", "title": "lunch", "isMerged": true },
+			{ "slot": "12:00 - 14:00", "title": "", "isMerged": false },
+			{ "slot": "14:00 - 14:30", "title": "lunch", "isMerged": true },
+			{ "slot": "14:30 - 17:00", "title": "", "isMerged": false }
+		]
+	}, {
+		"rooms": [
+			"Dev",
+			"DevOps",
+			"IoT",
+			"AI / ML",
+			"IT Pro"
+		],
+		"timeSlots": [
+			{ "slot": "8:15 - 9:00", "title": "registration", "isMerged": true },
+			{ "slot": "9:00 - 10:15", "title": "keynote", "isMerged": true },
+			{ "slot": "10:15 - 10:30", "title": "break", "isMerged": true },
+			{ "slot": "10:30 - 11:30", "title": "", "isMerged": false },
+			{ "slot": "11:30 - 12:00", "title": "lunch", "isMerged": true },
+			{ "slot": "12:00 - 13:00", "title": "", "isMerged": false },
+			{ "slot": "13:00 - 13:15", "title": "break", "isMerged": true },
+			{ "slot": "13:15 - 14:15", "title": "", "isMerged": false },
+			{ "slot": "14:15 - 14:45", "title": "lunch", "isMerged": true },
+			{ "slot": "14:45 - 15:45", "title": "", "isMerged": false },
+			{ "slot": "15:45 - 16:00", "title": "break", "isMerged": true },
+			{ "slot": "16:00 - 17:00", "title": "", "isMerged": false },
+			{ "slot": "17:00 - 17:30", "title": "lunch", "isMerged": true },
+			{ "slot": "17:30 - 18:30", "title": "", "isMerged": false },
+			{ "slot": "18:30 - 19:15", "title": "raffle", "isMerged": true },
+			{ "slot": "19:15 - 21:00", "title": "after party", "isMerged": true }
+		]
+	}]
+}

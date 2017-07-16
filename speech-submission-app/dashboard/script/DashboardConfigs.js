@@ -5,6 +5,7 @@ class DashboardConfigs {
         this._configVariableName = 'dashboardConfigs';
 
         this._apiHost = null;
+        this._schedule = null;
 
         this._fs = require('fs');
         this._path = require('path');
@@ -21,6 +22,17 @@ class DashboardConfigs {
         }
 
         return this._apiHost;
+    }
+
+    get schedule() {
+	    if (!this._schedule) {
+		    let configFilePath = this._path.join(this.root, 'schedule.json');
+		    let scheduleFileContent = this._fs.readFileSync(configFilePath, 'utf8');
+
+		    this._schedule = JSON.parse(scheduleFileContent);
+	    }
+
+	    return this._schedule;
     }
 
     get connectionString() {

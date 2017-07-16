@@ -29,9 +29,8 @@ function DashboardApp(rootNode) {
             });
     });
 
-    self.rooms = ko.observableArray([]);
+    self.schedule = dashboardConfigs.schedule;
 
-    self.timeSlots = ko.observableArray([]);
 
     // ======= Bindings =======
 
@@ -113,14 +112,6 @@ function DashboardApp(rootNode) {
     self.openSocialUrl = function(data, event) {
         dashboardUtils.openExternalUrl(data.url);
     };
-
-    self.addRoom = function() {
-        self.rooms.push({})
-    }
-
-    self.addTimeSlot = function() {
-        self.timeSlots.push({})
-    }
 
 
     // ======= Initialization =======
