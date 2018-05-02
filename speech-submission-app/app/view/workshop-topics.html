@@ -24,6 +24,24 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Description</label>
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                    <textarea data-bind="textInput: $data.description" placeholder="Description" class="form-control" rows="4"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Required skills (line by line)</label>
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                    <textarea data-bind="textInput: $data.skills" placeholder="Attendees required skills (for example - C#, UWP, WPF, T-SQL, SSIS, etc.) " class="form-control" rows="4"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Required software (line by line)</label>
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                    <textarea data-bind="textInput: $data.software" placeholder="Attendees required software to be installed on laptops (with url's for download)" class="form-control" rows="4"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">Level</label>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                     <select data-bind="value: $data.level" class="form-control">
