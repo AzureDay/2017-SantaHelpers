@@ -94,8 +94,13 @@
 	<!-- endinject -->
 
 	<script>
-		let root = document.getElementById('app');
-		let application = new SpeakerApp(root);
+		var config = JSON.parse(`
+// inject:content:json:config.json
+// endinject
+		`);
+
+		var root = document.getElementById('app');
+		var application = new SpeakerApp(root, config);
 		application.init();
 	</script>
 </body>

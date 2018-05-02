@@ -1,0 +1,29 @@
+{
+  "general": {
+    "year": 2018,
+    "country": "Ukraine"
+  },
+  "api": {
+    "host": "https://speaker-submission.azurewebsites.net"
+  },
+  "details": {
+    "dates": [
+      "September 5th or earlier",
+      "September 6th",
+      "September 7th",
+      "September 8th",
+      "September 9th",
+      "September 10th or later"
+    ],
+    "accommodation": [
+      { "title": "2 speakers",          "description": "two speakers in one twin room" },
+      { "title": "1 speaker",           "description": "one speaker in one single room" },
+      { "title": "1 speaker + 1 guest", "description": "one speaker and one guest in twin room" }
+    ],
+    "travel": [
+      "airplane",
+      "train",
+      "car"
+    ]
+  }
+}

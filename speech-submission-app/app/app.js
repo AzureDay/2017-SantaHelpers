@@ -1,11 +1,11 @@
-function SpeakerApp(rootNode) {
 	let self = this;
 	let root = rootNode;
+function SpeakerApp(rootNode, appConfig) {
 
 	let id = '';
 
-	const host = 'https://speaker-submission.azurewebsites.net';
-    const year = '2017';
+	var host = appConfig.api.host;
+    var year = appConfig.general.year;
 
 	const hostAuth = host + '/.auth/me';
 	const hostProfile = host + '/api/profile/' + year + '/';
@@ -28,30 +28,19 @@ function SpeakerApp(rootNode) {
         self.speaker.email(getClaimValue(authObject.user_claims, 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'));
     }
 
+    self.general = {
+	    year: ko.observable(year),
+        country: ko.observable(appConfig.general.country)
+    };
+
     self.message = {
 	    isVisible: ko.observable(true)
     };
 
 	self.travel = {
-		dates: [
-			'September 6 or before',
-            'September 7',
-            'September 8 - workshops day',
-            'September 9 - conference day',
-            'September 10 - after party day',
-            'September 11',
-			'September 12 or after'
-		],
-		accommodationTypes: [
-			{ title: '2 speakers', description: 'two speakers in one twin room' },
-            { title: '1 speaker', description: 'one speaker in one single room' },
-            { title: '1 speaker + 1 guest', description: 'one speaker and one guest in twin room' }
-		],
-		travelTypes: [
-            { title: 'airplane', description: '' },
-            { title: 'train', description: '' },
-            { title: 'car', description: '' }
-		]
+		dates: appConfig.details.dates,
+		accommodationTypes: appConfig.details.accommodation,
+		travelTypes: appConfig.details.travel
 	};
 
 	self.speaker = {

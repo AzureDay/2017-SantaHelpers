@@ -4,20 +4,34 @@ let server = require('gulp-server-livereload');
 let watch = require('gulp-watch');
 let batch = require('gulp-batch');
 let htmlMinify = require('gulp-html-minifier');
+let jsonminify = require("jsonminify");
 
 gulp.task('build', function () {
     let sourcesJs = gulp.src(['./app.js']);
     let injectJsContent = {
         starttag: '<!-- inject:content:js:{{path}} -->',
+        removeTags: true,
         relative: true,
         transform: function (filePath, file) {
             return '<script>' + file.contents.toString('utf8') + '</script>'
         }
     };
 
+    let sourcesJson = gulp.src(['./config.json']);
+    let injectJsonContent = {
+        starttag: '// inject:content:json:{{path}}',
+        endtag: '// endinject',
+        removeTags: true,
+        relative: true,
+        transform: function (filePath, file) {
+            return jsonminify(file.contents.toString('utf8'))
+        }
+    };
+
     let sourcesHtml = gulp.src(['./view/*.html']);
     let injectHtmlContent = {
         starttag: '<!-- inject:content:html:{{path}} -->',
+        removeTags: true,
         relative: true,
         transform: function (filePath, file) {
             return file.contents.toString('utf8')
@@ -27,6 +41,7 @@ gulp.task('build', function () {
     let sourcesCss = gulp.src(['./styles/*.css']);
     let injectCssContent = {
         starttag: '<!-- inject:content:css:{{path}} -->',
+        removeTags: true,
         relative: true,
         transform: function (filePath, file) {
             return '<style>' + file.contents.toString('utf8') + '</style>'
@@ -36,16 +51,16 @@ gulp.task('build', function () {
 	let sourcesJpeg = gulp.src(['./img/*.jpeg']);
 	let injectJpegContent = {
 		starttag: '<!-- inject:content:jpeg:{{path}} -->',
+        removeTags: true,
 		relative: true,
 		transform: function (filePath, file) {
 			return '<img class="img-responsive" src="data:image/jpeg;base64,' + file.contents.toString('base64') + '"/>'
 		}
 	};
 
-
-
     return gulp.src('./index.html')
         .pipe(gulpInject(sourcesJs, injectJsContent))
+        .pipe(gulpInject(sourcesJson, injectJsonContent))
         .pipe(gulpInject(sourcesHtml, injectHtmlContent))
         .pipe(gulpInject(sourcesCss, injectCssContent))
 	    .pipe(gulpInject(sourcesJpeg, injectJpegContent))
@@ -55,6 +70,7 @@ gulp.task('build', function () {
 gulp.task('build:local', ['build'], function () {
     let emptyCdn = {
         starttag: '<!-- inject:content:cdn -->',
+        removeTags: true,
         relative: true,
         transform: function () {
             return '';
@@ -68,6 +84,7 @@ gulp.task('build:local', ['build'], function () {
 gulp.task('build:cdn', ['build'], function () {
     let emptyLocal = {
         starttag: '<!-- inject:content:local -->',
+        removeTags: true,
         relative: true,
         transform: function () {
             return '';
