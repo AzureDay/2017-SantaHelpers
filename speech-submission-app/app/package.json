@@ -16,6 +16,7 @@
     "gulp-inject": "^4.2.0",
     "gulp-server-livereload": "^1.9.2",
     "gulp-watch": "^4.3.11",
-    "jsonminify": "^0.4.1"
+    "jsonminify": "^0.4.1",
+    "uglify-js": "^3.3.23"
   }
 }

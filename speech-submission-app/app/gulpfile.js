@@ -1,5 +1,6 @@
 let gulp = require('gulp');
 let gulpInject = require('gulp-inject');
+let uglify = require('uglify-js');
 let server = require('gulp-server-livereload');
 let watch = require('gulp-watch');
 let batch = require('gulp-batch');
@@ -13,7 +14,16 @@ gulp.task('build', function () {
         removeTags: true,
         relative: true,
         transform: function (filePath, file) {
-            return '<script>' + file.contents.toString('utf8') + '</script>'
+            let content = file.contents.toString('utf8');
+            let js = uglify.minify(content);
+
+            if (js.error) {
+                throw js.error;
+            } else {
+                content = js.code;
+            }
+
+            return '<script>' + content + '</script>'
         }
     };
 

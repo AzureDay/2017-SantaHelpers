@@ -1,25 +1,25 @@
-	let self = this;
-	let root = rootNode;
 function SpeakerApp(rootNode, appConfig) {
+	var self = this;
+	var root = rootNode;
 
-	let id = '';
+	var id = '';
 
 	var host = appConfig.api.host;
     var year = appConfig.general.year;
 
-	const hostAuth = host + '/.auth/me';
-	const hostProfile = host + '/api/profile/' + year + '/';
+	var hostAuth = host + '/.auth/me';
+	var hostProfile = host + '/api/profile/' + year + '/';
 
 
     // ======= Model =======
 
 	function parseAuth(authObject) {
 		function getClaimValue(claims, type) {
-            let claim = claims.filter(function (token) {
+            var claim = claims.filter(function (token) {
                 return token.typ === type;
             })[0];
 
-            return claim ? claim.val : ''; 
+            return claim ? claim.val : '';
         }
 
         id = getClaimValue(authObject.user_claims, 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier');
@@ -78,7 +78,7 @@ function SpeakerApp(rootNode, appConfig) {
     // ======= Bindings =======
 
     function getFromForm() {
-    	let profile = {};
+    	var profile = {};
 
     	Object
 			.keys(self.speaker)
@@ -187,7 +187,7 @@ function SpeakerApp(rootNode, appConfig) {
 		return new Promise(function(resolve, reject) {
             self.message.isVisible(true);
 
-			let profile = getFromForm();
+			var profile = getFromForm();
             $.ajax(hostProfile + id, {
                 contentType: 'application/json',
                 method: 'put',
