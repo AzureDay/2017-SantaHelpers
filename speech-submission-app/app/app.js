@@ -23,9 +23,13 @@ function SpeakerApp(rootNode, appConfig) {
         }
 
         id = getClaimValue(authObject.user_claims, 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier');
-		self.speaker.firstName(getClaimValue(authObject.user_claims, 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname'));
+        self.speaker.firstName(getClaimValue(authObject.user_claims, 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname'));
         self.speaker.lastName(getClaimValue(authObject.user_claims, 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname'));
-        self.speaker.email(getClaimValue(authObject.user_claims, 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'));
+        self.speaker.country(getClaimValue(authObject.user_claims, 'country'));
+        self.speaker.city(getClaimValue(authObject.user_claims, 'city'));
+        self.speaker.company(getClaimValue(authObject.user_claims, 'extension_Company'));
+        self.speaker.jobTitle(getClaimValue(authObject.user_claims, 'jobTitle'));
+        self.speaker.email(getClaimValue(authObject.user_claims, 'emails'));
     }
 
     self.general = {
