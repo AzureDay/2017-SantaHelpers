@@ -29,8 +29,9 @@ function SpeakerApp(rootNode, appConfig) {
     }
 
     self.general = {
-	    year: ko.observable(year),
-        country: ko.observable(appConfig.general.country)
+	    name: appConfig.general.name,
+	    year: year,
+        country: appConfig.general.country
     };
 
     self.message = {
