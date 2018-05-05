@@ -96,13 +96,13 @@
 	<!-- endinject -->
 
 	<script>
-		var config = JSON.parse(`
+		let config = JSON.parse(`
 // inject:content:json:config.json
 // endinject
 		`);
 
-		var root = document.getElementById('app');
-		var application = new SpeakerApp(root, config);
+		let root = document.getElementById('app');
+		let application = new SpeakerApp(root, config);
 		application.init();
 	</script>
 </body>
