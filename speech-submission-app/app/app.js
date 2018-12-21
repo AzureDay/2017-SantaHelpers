@@ -22,7 +22,10 @@ function SpeakerApp(rootNode, appConfig) {
             return claim ? claim.val : '';
         }
 
-        id = getClaimValue(authObject.user_claims, 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier');
+        console.log(authObject.user_claims);
+
+		id = getClaimValue(authObject.user_claims, 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier');
+
         self.speaker.firstName(getClaimValue(authObject.user_claims, 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname'));
         self.speaker.lastName(getClaimValue(authObject.user_claims, 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname'));
         self.speaker.country(getClaimValue(authObject.user_claims, 'country'));
@@ -233,6 +236,8 @@ function SpeakerApp(rootNode, appConfig) {
 			}, function (err) {
 				console.error(err);
 			});
+
+        self.message.isVisible(false);
 	};
 
 	return self;

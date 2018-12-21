@@ -5,7 +5,7 @@
     "country": "Ukraine"
   },
   "api": {
-    "host": "https://speaker-submission.azurewebsites.net"
+    "host": "https://azuredayconference-api.azurewebsites.net"
   },
   "details": {
     "dates": [
